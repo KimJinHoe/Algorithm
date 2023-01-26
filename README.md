@@ -19,13 +19,30 @@ Boj_2533_사회망서비스_dp
 숫자 입력받기
 - 아스키코드 + 비트연산자로 정수입력을 빠르게 받을 수 있음
 - 코딩테스트 시험에서는 굳이 쓰지말고 백준 순위 올리고 싶으면 쓰자.
-- 0을 포함한 자연수만 가능. 음수, 문자열 안됨
+- 문자, 문자열 안됨. 문자나 문자열은 System.in.read()로 구현하자. 하지만 굳이...? (귀찮으니 BufferedReader 쓰자)
 ```
+// 0을 포함한 자연수만 가능
     static int read() throws Exception {
         int c, n = System.in.read() & 15;
         while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
         if (c == 13) System.in.read();
         return n;
+    }
+```
+```
+// 정수 가능
+    static int read() throws Exception {
+
+        int c, n = System.in.read() & 15;
+
+        boolean isNegative = n == 13;
+        if (isNegative) n = System.in.read() & 15;
+
+        while ((c = System.in.read()) > 32)
+            n = (n << 3) + (n << 1) + (c & 15);
+
+        return isNegative ? ~n + 1 : n;
+
     }
 ```
 `dp를 좀 더 연습할 것`
