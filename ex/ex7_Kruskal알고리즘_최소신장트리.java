@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 //* 사이클이 존재하면 다음으로 가중치가 낮은 간선 선택
 //n-1개의 간선이 선택될 때까지 2를 반복
 //간선이 적으면 KRUSKAL 간선이 많으면 PRIM 알고리즘 쓰기 (KRUSCAL은 정렬에서 많은 시간 소모)
+//Arrays.sort()를 사용하지 않고 PriorityQueue를 쓰면 훨씬 효율적임
 /*
 5 10
 0 1 5
@@ -79,7 +80,7 @@ public class ex7_Kruskal알고리즘_최소신장트리 {
 			edgeList[i] = new Edge(from, to, weight);
 		}
 		
-		Arrays.sort(edgeList); //간선비용의 오름차순 정렬
+		Arrays.sort(edgeList); //간선비용의 오름차순 정렬. 중요!!! Arrays.sort()를 사용하지 않고 PriorityQueue를 쓰면 훨씬 효율적임
 		makeSet();
 		
 		int result = 0;
